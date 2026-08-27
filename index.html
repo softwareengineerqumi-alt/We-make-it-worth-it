@@ -13,13 +13,15 @@
             --periwinkle: #c5d3e8;
             --gold: #d4af37;
             --white: #ffffff;
+            --glass-bg: rgba(10, 17, 40, 0.65);
+            --glass-border: rgba(0, 240, 255, 0.25);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             scroll-behavior: smooth;
         }
 
@@ -27,9 +29,10 @@
             background-color: var(--navy);
             color: var(--white);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Navigation Bar Wrapper with Animated Gold/Navy Rope Border */
+        /* Animated Gold/Navy Rope Header Container */
         header {
             position: fixed;
             top: 20px;
@@ -37,27 +40,28 @@
             z-index: 1000;
             display: flex;
             justify-content: center;
+            padding: 0 20px;
         }
 
         nav {
             position: relative;
             display: flex;
+            align-items: center;
             gap: 15px;
-            background: rgba(10, 17, 40, 0.7);
-            padding: 14px 24px;
+            background: var(--glass-bg);
+            padding: 12px 24px;
             border-radius: 50px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
-        /* Gold and Navy animated border string around navbar */
         nav::before {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             border-radius: 54px;
             background: repeating-linear-gradient(
                 45deg,
@@ -69,7 +73,7 @@
             background-size: 200% 200%;
             z-index: -1;
             animation: moveRope 6s linear infinite;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
         }
 
         @keyframes moveRope {
@@ -77,36 +81,88 @@
             100% { background-position: 100% 100%; }
         }
 
-        /* Cyan Nav Buttons */
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
         .nav-btn {
             background: var(--cyan);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             color: var(--navy);
-            padding: 10px 22px;
+            padding: 8px 18px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
-            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .nav-btn:hover {
             background: var(--white);
             color: var(--dark-blue);
-            box-shadow: 0 0 20px var(--cyan);
-            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--cyan);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cyan);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Floating Circular Blue Liquid Glass Join Button */
+        .floating-join-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.95), rgba(3, 64, 120, 0.95));
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 32px rgba(0, 240, 255, 0.4),
+                        inset -5px -5px 15px rgba(0, 0, 0, 0.5),
+                        inset 5px 5px 15px rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            animation: float 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .floating-join-btn:hover {
+            transform: scale(1.08) rotate(4deg);
+            color: var(--gold);
+            box-shadow: 0 12px 40px rgba(0, 240, 255, 0.7);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(to right, rgba(10, 17, 40, 0.9) 35%, rgba(10, 17, 40, 0.4)), 
+            min-height: 100vh;
+            background: linear-gradient(to right, rgba(10, 17, 40, 0.92) 30%, rgba(10, 17, 40, 0.45)), 
                         url('IMG_0139.jpeg') center/cover no-repeat;
             display: flex;
             align-items: center;
-            padding: 0 10%;
+            padding: 120px 10% 60px;
         }
 
         .hero-content {
@@ -115,232 +171,468 @@
 
         .hero-content h1 {
             color: var(--cyan);
-            font-size: 3.5rem;
-            line-height: 1.1;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.05;
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
         }
 
         .hero-content h2 {
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--gold);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             margin-bottom: 20px;
-            text-transform: uppercase;
         }
 
         .hero-content p {
             color: var(--periwinkle);
             font-size: 1.1rem;
-            line-height: 1.6;
             margin-bottom: 30px;
         }
 
-        /* Floating Circular Blue Liquid Glass Join Today Button */
-        .floating-join-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.8), rgba(3, 64, 120, 0.9));
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.37),
-                        inset -5px -5px 15px rgba(0, 0, 0, 0.4),
-                        inset 5px 5px 15px rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            z-index: 9999;
-            animation: float 4s ease-in-out infinite;
-            transition: all 0.3s ease;
-        }
-
-        .floating-join-btn:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 40px rgba(0, 240, 255, 0.6),
-                        inset 0 0 20px rgba(255, 255, 255, 0.8);
-            color: var(--gold);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* Sections */
+        /* Section Layouts */
         .section {
-            padding: 100px 10%;
+            padding: 90px 10%;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            text-align: center;
         }
 
         .section-title {
-            text-align: center;
             font-size: 2.2rem;
-            margin-bottom: 50px;
             color: var(--periwinkle);
-            text-transform: uppercase;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .grid {
+        .section-subtitle {
+            color: var(--gold);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* Custom Asymmetric Split Grid */
+        .split-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
+        /* Glass Cards */
         .card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 240, 255, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 30px;
-            transition: 0.3s;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .card:hover {
             border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
         .card h3 {
             color: var(--cyan);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-size: 1.3rem;
         }
 
         .card p {
             color: var(--periwinkle);
             font-size: 0.95rem;
-            line-height: 1.6;
         }
 
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: var(--dark-blue);
+        /* Trainer Clickable Card & Badges */
+        .trainer-card {
+            cursor: pointer;
+        }
+
+        .trainer-card::after {
+            content: 'Click profile for details →';
+            display: block;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Membership Tiering Highlight */
+        .card.featured {
+            border: 2px solid var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 900;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin: 15px 0;
+            font-weight: 800;
+        }
+
+        .price span {
+            font-size: 0.9rem;
             color: var(--periwinkle);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: normal;
+        }
+
+        /* Interactive Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 17, 40, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--dark-blue);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            padding: 35px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: var(--periwinkle);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Functional Form Styling */
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--white);
+            outline: none;
+        }
+
+        form input:focus, form select:focus, form textarea:focus {
+            border-color: var(--cyan);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--navy);
+                padding: 20px;
+                border-radius: 20px;
+                border: 1px solid var(--glass-border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .split-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-join-btn {
+                width: 90px;
+                height: 90px;
+                font-size: 0.75rem;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar with Golden Navy Border -->
+    <!-- Header Navigation -->
     <header>
         <nav>
-            <a href="#home" class="nav-btn">HOME</a>
-            <a href="#classes" class="nav-btn">CLASSES</a>
-            <a href="#trainers" class="nav-btn">TRAINERS</a>
-            <a href="#schedule" class="nav-btn">SCHEDULE</a>
-            <a href="#contact" class="nav-btn">CONTACT</a>
+            <button class="hamburger" id="hamburger">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-btn">HOME</a>
+                <a href="#about" class="nav-btn">ABOUT</a>
+                <a href="#trainers" class="nav-btn">TRAINERS</a>
+                <a href="#membership" class="nav-btn">MEMBERSHIP</a>
+                <a href="#schedule" class="nav-btn">SCHEDULE</a>
+                <a href="#contact" class="nav-btn">CONTACT</a>
+            </div>
         </nav>
     </header>
 
-    <!-- Floating Blue Liquid Glass Join Today Button -->
-    <a href="#contact" class="floating-join-btn">JOIN<br>TODAY!</a>
+    <!-- Floating Circular Liquid Glass Join Button -->
+    <a href="#" class="floating-join-btn" onclick="openBookingModal(event)">JOIN<br>TODAY!</a>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>We make it worth it</h1>
             <h2>LUXURY GYM</h2>
-            <p>Push your limits with top-tier conditioning and expert coaching in an elite environment built strictly for performance and luxury.</p>
+            <p>An uncompromising training facility designed for people who take performance, recovery, and environment seriously. Premium equipment. Focused atmosphere. Zero clutter.</p>
         </div>
     </section>
 
-    <!-- Classes Section -->
-    <section id="classes" class="section">
-        <h2 class="section-title">Our Programs</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Strength</h3>
-                <p>Master compound lifts and build functional strength under targeted coaching protocols.</p>
+    <!-- About Section (Asymmetric Split Layout) -->
+    <section id="about" class="section">
+        <div class="split-grid">
+            <div>
+                <h2 class="section-title" style="text-align: left;">Built Without Compromise</h2>
+                <p style="color: var(--gold); font-size: 1rem; margin-top: -10px; margin-bottom: 20px;">PRIVACY • PRECISION • PERFORMANCE</p>
+                <p style="color: var(--periwinkle); margin-bottom: 15px;">We built this gym to eliminate the chaos of typical commercial facilities. No overcrowded spaces or broken machinery—just engineered strength equipment, dedicated conditioning zones, and functional recovery spaces.</p>
+                <p style="color: var(--periwinkle);">Every member gets dedicated coaching focus, individual training tracking, and structured programs tuned specifically to their physical goals.</p>
             </div>
-            <div class="card">
-                <h3>Yoga</h3>
-                <p>Refine mobility, balance, and mental focus with restorative Vinyasa flows.</p>
-            </div>
-            <div class="card">
-                <h3>Cardio</h3>
-                <p>Elevate endurance and burn energy with high-potency conditioning routines.</p>
-            </div>
-            <div class="card">
-                <h3>Rehab & Mobility</h3>
-                <p>Correct alignment, safeguard joints, and rebuild functional movement patterns.</p>
+            <div class="card" style="background: rgba(3, 64, 120, 0.2);">
+                <h3 style="color: var(--gold);">Facility Overview</h3>
+                <ul style="color: var(--periwinkle); list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 10px;">⚡ <strong>Hours:</strong> Mon – Sun: 05:00 – 22:00</li>
+                    <li style="margin-bottom: 10px;">⚡ <strong>Location:</strong> Sandton Central, Johannesburg</li>
+                    <li style="margin-bottom: 10px;">⚡ <strong>Access:</strong> Keycard Entry & Member Reservations</li>
+                    <li>⚡ <strong>Recovery:</strong> Cold Plunge & Infrared Saunas</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Trainers Section -->
+    <!-- Interactive Trainers Section -->
     <section id="trainers" class="section" style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title">Work Out With Experts</h2>
-        <div class="grid">
-            <div class="card">
+        <div class="section-header">
+            <h2 class="section-title">Coaching Staff</h2>
+            <p class="section-subtitle">Click any coach profile to review specialization and availability</p>
+        </div>
+        <div class="card-grid">
+            <div class="card trainer-card" onclick="showTrainer('Lesego', 'Strength & Power Specialist', 'Focuses on structural strength, heavy compound mechanics, and injury prevention. 8+ years coaching competitive powerlifters.')">
                 <h3>Lesego</h3>
-                <p><strong>Strength & Power Specialist:</strong> Focused on compound lifts, body recomposition, and building a resilient physique.</p>
+                <p><strong>Strength & Power:</strong> Compound movements & body recomposition.</p>
             </div>
-            <div class="card">
+            <div class="card trainer-card" onclick="showTrainer('Mmabatho', 'Yoga & Mobility Coach', 'Specializes in athletic mobility, joint health, and post-workout nervous system recovery using targeted breathwork and flow.')">
                 <h3>Mmabatho</h3>
-                <p><strong>Yoga & Mindful Movement:</strong> Specializes in Vinyasa flow, deep breathwork, and core mobility routines.</p>
+                <p><strong>Yoga & Mobility:</strong> Movement fluidity, joint safety & core resilience.</p>
             </div>
-            <div class="card">
+            <div class="card trainer-card" onclick="showTrainer('Nokbonga', 'High-Intensity Conditioning Expert', 'Designs metabolic conditioning sessions built for stamina, quick recovery intervals, and functional athletic endurance.')">
                 <h3>Nokbonga</h3>
-                <p><strong>Cardio Conditioning Expert:</strong> Delivers explosive HIIT and endurance workouts to push athletic performance limits.</p>
+                <p><strong>Cardio Conditioning:</strong> High-potency interval conditioning & spin dynamics.</p>
             </div>
-            <div class="card">
+            <div class="card trainer-card" onclick="showTrainer('Refilwe', 'Dance & Agility Coach', 'Combines footwork drills, rhythm-driven cardio, and balance work to build athletic coordination effortlessly.')">
                 <h3>Refilwe</h3>
-                <p><strong>Dance & Expressive Fitness:</strong> Combines rhythm, coordination, and athletic movement for engaging full-body cardio.</p>
+                <p><strong>Dance & Agility:</strong> High-energy footwork, rhythm & speed work.</p>
             </div>
-            <div class="card">
+            <div class="card trainer-card" onclick="showTrainer('Sisanda', 'Rehab & Recovery Specialist', 'Certificated in functional corrective exercise. Works closely with members returning from injury or rectifying bad form.')">
                 <h3>Sisanda</h3>
-                <p><strong>Injury Rehab Specialist:</strong> Expert in joint health, sustainability, and corrective exercise to keep training pain-free.</p>
+                <p><strong>Rehab & Prehab:</strong> Corrective exercise & joint restoration.</p>
             </div>
         </div>
     </section>
 
-    <!-- Schedule Section -->
-    <section id="schedule" class="section">
-        <h2 class="section-title">Weekly Schedule</h2>
-        <div class="grid">
+    <!-- Membership Options Section -->
+    <section id="membership" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Membership Tiers</h2>
+            <p class="section-subtitle">Simple, transparent options. No long-term lock-in traps.</p>
+        </div>
+        <div class="card-grid">
             <div class="card">
-                <h3>Morning Sessions</h3>
-                <p>06:00 AM - 09:00 AM<br>Strength & HIIT Conditioning</p>
+                <h3>Standard Access</h3>
+                <div class="price">R 1,200 <span>/ month</span></div>
+                <p>Full facility access, locker access, standard group conditioning classes, and monthly progress evaluations.</p>
+                <button class="nav-btn" style="width: 100%; margin-top: 20px;" onclick="openBookingModal(event)">Select Plan</button>
+            </div>
+            <div class="card featured">
+                <div class="badge">MOST POPULAR</div>
+                <h3>Performance VIP</h3>
+                <div class="price">R 2,400 <span>/ month</span></div>
+                <p>Includes unlimited class reservations, monthly 1-on-1 coach assessment, recovery plunge access, and guest passes.</p>
+                <button class="nav-btn" style="width: 100%; margin-top: 20px; background: var(--gold); color: var(--navy);" onclick="openBookingModal(event)">Select Plan</button>
             </div>
             <div class="card">
-                <h3>Midday Sessions</h3>
-                <p>12:00 PM - 02:00 PM<br>Core Rehab & Mobility Flow</p>
-            </div>
-            <div class="card">
-                <h3>Evening Sessions</h3>
-                <p>05:00 PM - 08:00 PM<br>Power Lifting & Athletic Performance</p>
+                <h3>Private Coaching</h3>
+                <div class="price">R 4,800 <span>/ month</span></div>
+                <p>Dedicated personal coach (12 sessions/mo), custom nutrition planning, full facility access, and priority booking.</p>
+                <button class="nav-btn" style="width: 100%; margin-top: 20px;" onclick="openBookingModal(event)">Select Plan</button>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section" style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title">Get Started Now</h2>
-        <div style="text-align: center; max-width: 500px; margin: 0 auto;">
-            <p style="color: var(--periwinkle); margin-bottom: 25px;">Ready to elevate your training? Contact us today to secure your membership.</p>
-            <a href="mailto:info@wemakeitworthit.com" class="nav-btn" style="padding: 15px 35px; display: inline-block;">CONTACT US</a>
+    <!-- Schedule & Testimonials Split -->
+    <section id="schedule" class="section" style="background: rgba(0,0,0,0.2);">
+        <div class="split-grid">
+            <div>
+                <h2 class="section-title" style="text-align: left;">Class Schedule</h2>
+                <div class="card" style="margin-bottom: 15px;">
+                    <h3 style="font-size: 1rem;">Morning Session (06:00 – 09:00)</h3>
+                    <p>Strength Foundations with Lesego • HIIT Conditioning with Nokbonga</p>
+                </div>
+                <div class="card" style="margin-bottom: 15px;">
+                    <h3 style="font-size: 1rem;">Midday Session (12:00 – 14:00)</h3>
+                    <p>Mobility & Core Rehab with Sisanda • Athletic Flow with Mmabatho</p>
+                </div>
+                <div class="card">
+                    <h3 style="font-size: 1rem;">Evening Session (17:00 – 20:00)</h3>
+                    <p>Agility & Dance Cardio with Refilwe • Heavy Compound Lifts with Lesego</p>
+                </div>
+            </div>
+            <div>
+                <h2 class="section-title" style="text-align: left;">Member Feedback</h2>
+                <div class="card" style="border-left: 4px solid var(--gold);">
+                    <p style="font-style: italic; margin-bottom: 15px;">"The layout is spacious, the equipment is exceptionally well-maintained, and having coaches like Sisanda make sure you don't wreck your joints while lifting heavy."</p>
+                    <p style="color: var(--cyan); font-weight: bold;">— Thabo M., Member since 2024</p>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--cyan); margin-top: 20px;">
+                    <p style="font-style: italic; margin-bottom: 15px;">"No waiting 20 minutes for a squat rack, no absurdly loud music. Just high-caliber facility quality and real coaching focus."</p>
+                    <p style="color: var(--gold); font-weight: bold;">— Siphokazi K., Member since 2025</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Contact & Application Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Schedule A Visit</h2>
+            <p class="section-subtitle">We limit active memberships to prevent overcrowding</p>
+        </div>
+        <div style="max-width: 600px; margin: 0 auto;" class="card">
+            <form onsubmit="handleFormSubmit(event)">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <select required>
+                    <option value="" disabled selected>Select Primary Goal</option>
+                    <option value="strength">Strength & Power Building</option>
+                    <option value="rehab">Rehab & Mobility</option>
+                    <option value="conditioning">Endurance & Weight Loss</option>
+                </select>
+                <textarea rows="4" placeholder="Tell us about your current training routine..."></textarea>
+                <button type="submit" class="nav-btn" style="width: 100%; padding: 12px;">Submit Membership Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 We Make It Worth It | Luxury Gym. All Rights Reserved.</p>
+        <div style="text-align: center; padding: 40px 10%; background: var(--dark-blue); border-top: 1px solid var(--glass-border);">
+            <p style="color: var(--gold); font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 10px;">WE MAKE IT WORTH IT</p>
+            <p style="color: var(--periwinkle); font-size: 0.9rem; margin-bottom: 20px;">Sandton Central • Johannesburg • South Africa</p>
+            <p style="color: rgba(255,255,255,0.4); font-size: 0.8rem;">&copy; 2026 We Make It Worth It | Luxury Gym. All Rights Reserved.</p>
+        </div>
     </footer>
 
+    <!-- Interactive Trainer Modal -->
+    <div class="modal" id="trainerModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('trainerModal')">&times;</span>
+            <h2 id="modalName" style="color: var(--cyan); margin-bottom: 5px;"></h2>
+            <h4 id="modalRole" style="color: var(--gold); margin-bottom: 15px;"></h4>
+            <p id="modalBio" style="color: var(--periwinkle);"></p>
+        </div>
+    </div>
+
+    <!-- Interactive Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('bookingModal')">&times;</span>
+            <h2 style="color: var(--cyan); margin-bottom: 10px;">Request Pass</h2>
+            <p style="color: var(--periwinkle); margin-bottom: 20px;">Leave your contact details to reserve a day pass or tour our facility.</p>
+            <form onsubmit="handleModalSubmit(event)">
+                <input type="text" placeholder="Your Name" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <button type="submit" class="nav-btn" style="width: 100%;">Reserve Day Pass</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Trainer Modal Display
+        function showTrainer(name, role, bio) {
+            document.getElementById('modalName').innerText = name;
+            document.getElementById('modalRole').innerText = role;
+            document.getElementById('modalBio').innerText = bio;
+            document.getElementById('trainerModal').style.display = 'flex';
+        }
+
+        // Generic Modal Handlers
+        function openBookingModal(e) {
+            e.preventDefault();
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you! Your membership request has been submitted. Our team will contact you shortly.');
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            alert('Pass reserved! Show your confirmation email at the front desk.');
+            closeModal('bookingModal');
+        }
+
+        // Close modal when clicking backdrop
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
