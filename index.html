@@ -1,1 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Fitness</title>
+    <style>
+        :root {
+            --navy: #0a1128;
+            --dark-blue: #001f54;
+            --blue: #034078;
+            --cyan: #00f0ff;
+            --periwinkle: #c5d3e8;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(0, 240, 255, 0.4);
+            --white: #ffffff;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        /* Glassmorphism Navigation Bar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            background: rgba(10, 17, 40, 0.5);
+            padding: 10px 20px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 240, 255, 0.25);
+            border-color: var(--cyan);
+            color: var(--cyan);
+            box-shadow: 0 0 15px var(--cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section with GitHub Image */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(10, 17, 40, 0.85) 40%, rgba(10, 17, 40, 0.3)), 
+                        url('IMG_0139.jpeg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            color: var(--cyan);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            color: var(--periwinkle);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: var(--white);
+            box-shadow: 0 0 20px var(--cyan);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--periwinkle);
+            text-transform: uppercase;
+        }
+
+        /* Grid Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(197, 211, 232, 0.2);
+            border-radius: 12px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--cyan);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--periwinkle);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--dark-blue);
+            color: var(--periwinkle);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Liquid Glass Navigation Bar -->
+    <header>
+        <nav>
+            <a href="#home" class="nav-btn">HOME</a>
+            <a href="#classes" class="nav-btn">CLASSES</a>
+            <a href="#trainers" class="nav-btn">TRAINERS</a>
+            <a href="#schedule" class="nav-btn">SCHEDULE</a>
+            <a href="#contact" class="nav-btn">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- Home / Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Body, Elevate Your Life</h1>
+            <h2>AETHER FITNESS</h2>
+            <p>Modern Gym, Proven Results. Push your limits with top-tier conditioning and expert coaching in an environment built for performance.</p>
+            <a href="#contact" class="cta-btn">JOIN TODAY!</a>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section id="classes" class="section">
+        <h2 class="section-title">Our Programs</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Strength</h3>
+                <p>Build muscle and improve power using compound movements and progressive overload principles.</p>
+            </div>
+            <div class="card">
+                <h3>Yoga</h3>
+                <p>Enhance flexibility, balance, and core stability through guided mobility flows.</p>
+            </div>
+            <div class="card">
+                <h3>Cardio</h3>
+                <p>Boost endurance with high-intensity interval training designed for maximum energy burn.</p>
+            </div>
+            <div class="card">
+                <h3>Rehab & Mobility</h3>
+                <p>Prevent injuries and restore joint movement with target corrective exercise routines.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section (No Pictures) -->
+    <section id="trainers" class="section" style="background: rgba(0,0,0,0.2);">
+        <h2 class="section-title">Work Out With Experts</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Lesego</h3>
+                <p><strong>Strength & Power Specialist:</strong> Focused on compound lifts, body recomposition, and helping you build a resilient, powerful physique.</p>
+            </div>
+            <div class="card">
+                <h3>Mmabatho</h3>
+                <p><strong>Yoga & Mindful Movement:</strong> Specializes in Vinyasa flow, breathwork, and deep core conditioning to improve flexibility and focus.</p>
+            </div>
+            <div class="card">
+                <h3>Nokbonga</h3>
+                <p><strong>Cardio Conditioning Expert:</strong> Leads high-energy HIIT and spin sessions to maximize endurance and athletic performance.</p>
+            </div>
+            <div class="card">
+                <h3>Refilwe</h3>
+                <p><strong>Dance & Expressive Fitness:</strong> Blends rhythm and functional movement to make full-body cardio and agility training dynamic and fun.</p>
+            </div>
+            <div class="card">
+                <h3>Sisanda</h3>
+                <p><strong>Injury Rehab Specialist:</strong> Certified in corrective exercise and joint health, ensuring long-term strength without pain.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section">
+        <h2 class="section-title">Weekly Schedule</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Morning Sessions</h3>
+                <p>06:00 AM - 09:00 AM<br>HIIT, Strength, and Yoga</p>
+            </div>
+            <div class="card">
+                <h3>Midday Sessions</h3>
+                <p>12:00 PM - 02:00 PM<br>Express Cardio & Core Rehab</p>
+            </div>
+            <div class="card">
+                <h3>Evening Sessions</h3>
+                <p>05:00 PM - 08:00 PM<br>Power Lifting & Dance Fitness</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section" style="background: rgba(0,0,0,0.2);">
+        <h2 class="section-title">Get Started Now</h2>
+        <div style="text-align: center; max-width: 500px; margin: 0 auto;">
+            <p style="color: var(--periwinkle); margin-bottom: 20px;">Ready to begin your fitness journey? Reach out to schedule your trial session today.</p>
+            <a href="mailto:info@aetherfitness.com" class="cta-btn">CONTACT US</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Aether Fitness. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
